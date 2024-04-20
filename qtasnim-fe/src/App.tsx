@@ -3,10 +3,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CreateProduct from './pages/CreateProduct';
 import FindAllProduct from './pages/FindAllProduct';
-import FindProductById from './pages/FindProductById';
 import FindAndSort from './pages/FindAndSort';
 import Compare from './pages/Compare';
 import FilterByDate from './pages/FilterByDate';
+import UpdateProduct from './pages/UpdateProduct';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<FindAllProduct />} />
         <Route path="/create-product" element={<CreateProduct />} />
-        <Route path="/find-product-by-id" element={<FindProductById />} />
+        <Route path="/update-product/:id" element={<UpdateProduct />} />
         <Route path="/find-and-sort" element={<FindAndSort />} />
         <Route path="/compare" element={<Compare />} />
         <Route path="/filter-by-date" element={<FilterByDate />} />

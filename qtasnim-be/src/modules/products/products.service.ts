@@ -21,6 +21,24 @@ export class ProductsService {
     });
   }
 
+  async delete(id: number) {
+    return await this.productRepository.destroy({ where: { id } });
+  }
+
+  async update(id, data) {
+    const [numberOfAffectedRows, [updatedProduct]] =
+      await this.productRepository.update(
+        {
+          ...data,
+        },
+        {
+          where: { id },
+          returning: true,
+        },
+      );
+    return { numberOfAffectedRows, updatedProduct };
+  }
+
   async findAll(): Promise<Product[]> {
     return await this.productRepository.findAll<Product>();
   }

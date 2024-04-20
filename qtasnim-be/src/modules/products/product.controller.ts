@@ -1,4 +1,14 @@
-import { Controller, Body, Post, Get, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Body,
+  Post,
+  Get,
+  Param,
+  Query,
+  Put,
+  Delete,
+  NotFoundException,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductDto } from '../products/dto/product.dto';
 import { Product } from './product.entity';
@@ -55,5 +65,39 @@ export class ProductController {
       validStartDate,
       validEndDate,
     );
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() product: ProductDto,
+  ): Promise<Product> {
+    // get the number of row affected and the updated post
+    const { numberOfAffectedRows, updatedProduct } =
+      await this.productService.update(id, product);
+
+    // if the number of row affected is zero,
+    // it means the post doesn't exist in our db
+    if (numberOfAffectedRows === 0) {
+      throw new NotFoundException("This Product doesn't exist");
+    }
+
+    // return the updated post
+    return updatedProduct;
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: number) {
+    // delete the post with this id
+    const deleted = await this.productService.delete(id);
+
+    // if the number of row affected is zero,
+    // then the post doesn't exist in our db
+    if (deleted === 0) {
+      throw new NotFoundException("This Post doesn't exist");
+    }
+
+    // return success message
+    return 'Successfully deleted';
   }
 }

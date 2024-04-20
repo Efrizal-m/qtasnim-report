@@ -1,11 +1,12 @@
-// src/pages/CreateProduct.tsx
-import React, { useState } from 'react';
+// src/pages/UpdateProduct.tsx
+import React, { useEffect, useState } from 'react';
 import { TextField, Button, Container, Typography, Box, Select, MenuItem, FormHelperText } from '@mui/material';
 import '../App.css'; // Import CSS file
 import axios from 'axios';
-import Navbar from '../components/Navbar';
+import { useParams } from 'react-router-dom';
 
-function CreateProduct() {
+function UpdateProduct() {
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     nama_barang: '',
     stok: '',
@@ -14,6 +15,19 @@ function CreateProduct() {
     jenis_barang: ''
   });
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/v1/product/${id}`);
+        setFormData(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, [id]);
+  
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name!]: value });
@@ -27,7 +41,6 @@ function CreateProduct() {
 
   return (
     <Container maxWidth="sm" className="form-container">
-      <Navbar />
       <Typography variant="h4" align="center" gutterBottom>
         Product Form
       </Typography>
@@ -100,4 +113,4 @@ function CreateProduct() {
   );
 }
 
-export default CreateProduct;
+export default UpdateProduct;
