@@ -81,10 +81,10 @@ export class ProductsService {
     compareType: 'most' | 'least',
   ): Promise<Product[]> {
     const query = `
-      SELECT p.*
-      FROM products p
-      WHERE p.type = :productType
-      ORDER BY p.quantity ${compareType === 'most' ? 'DESC' : 'ASC'}
+      SELECT *
+      FROM "Products"
+      WHERE jenis_barang = :productType
+      ORDER BY jumlah_terjual ${compareType === 'most' ? 'DESC' : 'ASC'}
       LIMIT 1
     `;
 

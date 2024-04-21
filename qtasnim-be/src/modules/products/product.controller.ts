@@ -47,13 +47,18 @@ export class ProductController {
 
   @Get('compare')
   async compareTransactionsByProductType(
-    @Query('productType') productType: string,
     @Query('compareType') compareType: 'most' | 'least',
   ): Promise<Product[]> {
-    return await this.productService.compareTransactionsByProductType(
-      productType,
+    const konsumsi = await this.productService.compareTransactionsByProductType(
+      'Konsumsi',
       compareType,
     );
+    const pembersih =
+      await this.productService.compareTransactionsByProductType(
+        'Pembersih',
+        compareType,
+      );
+    return konsumsi.concat(pembersih);
   }
 
   @Get('filterByDate')
@@ -78,7 +83,6 @@ export class ProductController {
     @Body() product: ProductDto,
   ): Promise<Product> {
     // get the number of row affected and the updated post
-    console.log(product, '<<<<<');
     const { numberOfAffectedRows, updatedProduct } =
       await this.productService.update(id, product);
 
