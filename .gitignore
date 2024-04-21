@@ -1,0 +1,56 @@
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# compiled output
+/qtasnim-be/dist
+/qtasnim-be/node_modules
+/qtasnim-be/build
+
+# Logs
+/qtasnim-be/logs
+/qtasnim-be/*.log
+/qtasnim-be/npm-debug.log*
+/qtasnim-be/pnpm-debug.log*
+/qtasnim-be/yarn-debug.log*
+/qtasnim-be/yarn-error.log*
+/qtasnim-be/lerna-debug.log*
+
+# OS
+/qtasnim-be/.DS_Store
+
+# Tests
+/qtasnim-be/coverage
+/qtasnim-be/.nyc_output
+
+# IDEs and editors
+/qtasnim-be/.idea
+/qtasnim-be/.project
+/qtasnim-be/.classpath
+/qtasnim-be/.c9/
+/qtasnim-be/*.launch
+/qtasnim-be/.settings/
+/qtasnim-be/*.sublime-workspace
+
+# dotenv environment variable files
+/qtasnim-be/.env
+/qtasnim-be/.env.development.local
+/qtasnim-be/.env.test.local
+/qtasnim-be/.env.production.local
+/qtasnim-be/.env.local
+
+# temp directory
+/qtasnim-be/.temp
+/qtasnim-be/.tmp
+
+# Runtime data
+/qtasnim-be/pids
+/qtasnim-be/*.pid
+/qtasnim-be/*.seed
+/qtasnim-be/*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+/qtasnim-be/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
