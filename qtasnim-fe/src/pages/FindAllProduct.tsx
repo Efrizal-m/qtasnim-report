@@ -4,25 +4,25 @@ import '../App.css'; // Import CSS file
 import axios from 'axios';
 import moment from 'moment'
 import Navbar from '../components/Navbar';
+import Searchbar from '../components/Searchbar';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 function FindAllProduct() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Function to fetch products from API
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/api/v1/product');
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/api/v1/product');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchProducts();
-  }, [products]);
+  }, []);
 
 
   const handleUpdate = (id: any) => {
@@ -37,10 +37,21 @@ function FindAllProduct() {
     });
   }
 
+  // const [searchResults, setSearchResults] = useState<any[]>([]); // Define state to store search results
+
+  // Function to handle search action
+  const handleSearch = (query: string) => {
+    if (!query) { fetchProducts() }
+    let filteredProducts = products.filter((p: any) => p.nama_barang.includes(query));
+    setProducts(filteredProducts);
+  };
 
   return (
     <div>
       <Navbar />
+      <hr />
+      <Searchbar onSearch={handleSearch} />
+
       <table className="product-table">
         <thead>
           <tr>

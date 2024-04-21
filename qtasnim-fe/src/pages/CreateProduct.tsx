@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Box, Select, MenuItem, FormHelperText } from '@mui/material';
 import '../App.css'; // Import CSS file
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 
 function CreateProduct() {
   const [formData, setFormData] = useState({
@@ -27,7 +26,6 @@ function CreateProduct() {
 
   return (
     <Container maxWidth="sm" className="form-container">
-      <Navbar />
       <Typography variant="h4" align="center" gutterBottom>
         Product Form
       </Typography>

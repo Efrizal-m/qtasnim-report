@@ -27,7 +27,7 @@ export class ProductController {
     return await this.productService.findAll();
   }
 
-  @Get(':id')
+  @Get('detail/:id')
   async findById(@Param('id') id: number) {
     return await this.productService.findOneById(id);
   }
@@ -94,7 +94,7 @@ export class ProductController {
     // if the number of row affected is zero,
     // then the post doesn't exist in our db
     if (deleted === 0) {
-      throw new NotFoundException("This Post doesn't exist");
+      throw new NotFoundException("This Product doesn't exist");
     }
 
     // return success message

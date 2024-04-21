@@ -93,10 +93,14 @@ export class ProductsService {
     endDate: Date,
   ): Promise<Product[]> {
     // Query the database for products within the date range
+    console.log(startDate, endDate);
     return await this.productRepository.findAll({
       where: {
-        createdAt: {
-          $between: [startDate, endDate],
+        tanggal_terjual: {
+          [Op.and]: {
+            [Op.gte]: startDate,
+            [Op.lte]: endDate,
+          },
         },
       },
     });

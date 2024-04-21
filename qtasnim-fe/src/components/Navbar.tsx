@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
           Qtasnim Product Management
         </Typography>
         <Button component={Link} to="/create-product" color="inherit" style={{ textDecoration: 'none', marginRight: '1rem' }}>Create Product</Button>
-        {/* <Button component={Link} to="/compare" color="inherit" style={{ textDecoration: 'none', marginRight: '1rem' }}>Product List</Button> */}
+        <Button component={Link} to="/filter-by-date" color="inherit" style={{ textDecoration: 'none', marginRight: '1rem' }}>Filter By Date</Button>
       </Toolbar>
     </AppBar>
   );
