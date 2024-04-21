@@ -36,8 +36,13 @@ export class ProductController {
   async searchAndSortProducts(
     @Query('query') query: string,
     @Query('sortBy') sortBy: string,
+    @Query('sortOrder') sortOrder: string,
   ): Promise<Product[]> {
-    return await this.productService.searchAndSortProducts(query, sortBy);
+    return await this.productService.searchAndSortProducts(
+      query,
+      sortBy,
+      sortOrder,
+    );
   }
 
   @Get('compare')
@@ -73,6 +78,7 @@ export class ProductController {
     @Body() product: ProductDto,
   ): Promise<Product> {
     // get the number of row affected and the updated post
+    console.log(product, '<<<<<');
     const { numberOfAffectedRows, updatedProduct } =
       await this.productService.update(id, product);
 

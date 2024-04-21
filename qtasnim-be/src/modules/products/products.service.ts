@@ -46,6 +46,7 @@ export class ProductsService {
   async searchAndSortProducts(
     query: string,
     sortBy: string,
+    sortOrder: string,
   ): Promise<Product[]> {
     let whereCondition = {};
     let order = [];
@@ -54,13 +55,19 @@ export class ProductsService {
     if (query) {
       whereCondition = {
         ...whereCondition,
-        name: { [Op.iLike]: `%${query}%` }, // Op.iLike for case-insensitive search
+        nama_barang: { [Op.iLike]: `%${query}%` }, // Op.iLike for case-insensitive search
       };
     }
-
+    sortOrder = sortOrder.toUpperCase();
     // Sort by transaction date
-    if (sortBy === 'transactionDate') {
-      order = [['transactionDate', 'ASC']]; // Set order by transaction date (ASC = ascending)
+    if (sortBy === 'tanggal_terjual') {
+      order = [['tanggal_terjual', sortOrder]];
+    } else if (sortBy === 'nama_barang') {
+      order = [['nama_barang', sortOrder]];
+    } else if (sortBy === 'stok') {
+      order = [['stok', sortOrder]];
+    } else if (sortBy === 'jumlah_terjual') {
+      order = [['jumlah_terjual', sortOrder]];
     }
 
     // Query the database

@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
         </Typography>
         <Button component={Link} to="/create-product" color="inherit" style={{ textDecoration: 'none', marginRight: '1rem' }}>Create Product</Button>
         <Button component={Link} to="/filter-by-date" color="inherit" style={{ textDecoration: 'none', marginRight: '1rem' }}>Filter By Date</Button>
+        <Button component={Link} to="/find-and-sort" color="inherit" style={{ textDecoration: 'none', marginRight: '1rem' }}>Find And Sort</Button>
       </Toolbar>
     </AppBar>
   );
